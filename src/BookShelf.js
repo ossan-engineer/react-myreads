@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './BookShelf.css';
 
-const BookShelf = (props) => (
+const BookShelf = props => (
   <div className='bookshelf'>
-    <h2 className='bookshelf-title'>Currently Reading / Want to Read / Read</h2>
+    <h2 className='bookshelf-title'>{props.title}</h2>
     <div className='bookshelf-books'>
       <ol className='books-grid'>
         <li>
@@ -185,5 +186,9 @@ const BookShelf = (props) => (
     </div>
   </div>
 );
+
+BookShelf.propTypes = {
+  title: PropTypes.string.isRequired,
+}
 
 export default BookShelf;

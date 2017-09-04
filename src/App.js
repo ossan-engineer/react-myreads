@@ -35,9 +35,9 @@ class BooksApp extends React.Component {
             <ListBooksTitle title='MyReads' />
             <div className='list-books-content'>
               <div>
-                <BookShelf />
-                <BookShelf />
-                <BookShelf />
+                <BookShelf title='Currently Reading' />
+                <BookShelf title='Want to Read' />
+                <BookShelf title='Read' />
               </div>
             </div>
             <OpenSearch onAdd={this.handleAdd} />
