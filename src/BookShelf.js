@@ -189,6 +189,6 @@ const BookShelf = props => (
 
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,
-}
+};
 
 export default BookShelf;

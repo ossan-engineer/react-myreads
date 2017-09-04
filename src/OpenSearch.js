@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './OpenSearch.css';
 
-const OpenSearch = props => (
+const OpenSearch = () => (
   <div className='open-search'>
-    <a onClick={props.onAdd}>Add a book</a>
+    <Link
+      to='/search'
+    />
   </div>
 );
-
-OpenSearch.propTypes = {
-  onAdd: PropTypes.func.isRequired,
-}
 
 export default OpenSearch;
