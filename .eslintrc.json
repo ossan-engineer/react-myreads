@@ -1,9 +1,17 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "plugins": [
+    "import",
+    "babel",
+    "react",
+    "promise",
+    "jsx-a11y"
+  ],
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "rules": {
     "class-methods-use-this": [
