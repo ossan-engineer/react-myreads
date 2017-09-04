@@ -32,7 +32,7 @@ class BooksApp extends React.Component {
           <SearchBooks onCloseSearch={this.handleCloseSearch} />
         ) : (
           <div className='list-books'>
-            <ListBooksTitle />
+            <ListBooksTitle title='MyReads' />
             <div className='list-books-content'>
               <div>
                 <BookShelf />
