@@ -8,6 +8,8 @@ const Book = (props) => {
     title,
     author,
     imageUrl,
+    category,
+    handleChange,
   } = props;
 
   return (
@@ -19,7 +21,7 @@ const Book = (props) => {
           alt={`${id}: ${title} - ${author}`}
         />
         <div className='book-shelf-changer'>
-          <select>
+          <select value={category} onChange={(event) => handleChange(event, id)}>
             <option value='none' disabled>Move to...</option>
             <option value='currentlyReading'>Currently Reading</option>
             <option value='wantToRead'>Want to Read</option>
@@ -39,6 +41,8 @@ Book.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default Book;
