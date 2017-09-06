@@ -75,17 +75,17 @@ class App extends React.Component {
   }
 
   handleChange = (event, id) => {
-    // TODO: Update state
-    const newState = this.state.books.concat();
+    const newBooks = this.state.books.map(book => Object.assign({}, book));
 
-    this.setState({
-      books: newState,
+    newBooks.forEach((newBook) => {
+      if (newBook.id === id) {
+        newBook.category = event.target.value;
+      }
     });
 
-    console.log(event);
-    console.log(event.target);
-    console.log(event.target.value);
-    console.log(id);
+    this.setState({
+      books: newBooks,
+    });
   };
 
   render() {
