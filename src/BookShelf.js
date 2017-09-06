@@ -13,7 +13,7 @@ const BookShelf = (props) => {
         <ol className='books-grid'>
           {books.filter(book => book.category === category)
             .map(book => (
-              <li>
+              <li key={book.id}>
                 <Book {...book} handleChange={handleChange} />
               </li>
             ))
