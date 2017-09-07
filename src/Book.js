@@ -18,7 +18,7 @@ const Book = (props) => {
         <img
           src={imageLinks.thumbnail}
           className='book-cover'
-          alt={`${id}: ${title} - ${authors.toString()}`}
+          alt={`${id}: ${title} - ${authors.join(', ')}`}
         />
         <div className='book-shelf-changer'>
           <select value={shelf} onChange={(event) => handleChange(event, id)}>
@@ -31,7 +31,7 @@ const Book = (props) => {
         </div>
       </div>
       <div className='book-title'>{title}</div>
-      <div className='book-authors'>{authors.toString()}</div>
+      <div className='book-authors'>{authors.join(', ')}</div>
     </div>
   );
 };
