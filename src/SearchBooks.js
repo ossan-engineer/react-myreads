@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
+import Book from './Book';
 import './SearchBooks.css';
 
 class SearchBooks extends Component {
-  componentDidMount() {
-    BooksAPI.search('react', 10);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      books: [],
+    };
   }
 
+  handleSearch = (event) => {
+    this.setState({
+      books: [],
+    });
+
+    BooksAPI.search(event.target.value).then(data => this.setState({
+      books: data,
+    }));
+  };
+
   render() {
+    const { handleChange } = this.props;
+
     return (
       <div className='search-books'>
         <div className='search-books-bar'>
@@ -25,16 +43,31 @@ class SearchBooks extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-            <input type='text' placeholder='Search by title or author'/>
+            <input
+              type='text'
+              placeholder='Search by title or author'
+              onChange={this.handleSearch}
+            />
 
           </div>
         </div>
         <div className='search-books-results'>
-          <ol className='books-grid' />
+          <ol className='books-grid'>
+            {this.state.books.map(book => (
+              <li key={book.id}>
+                <Book {...book} handleChange={handleChange} />
+              </li>
+            ))
+            }
+          </ol>
         </div>
       </div>
     );
   }
 }
+
+SearchBooks.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default SearchBooks;

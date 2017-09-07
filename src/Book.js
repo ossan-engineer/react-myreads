@@ -21,7 +21,7 @@ const Book = (props) => {
           alt={`${id}: ${title} - ${authors.join(', ')}`}
         />
         <div className='book-shelf-changer'>
-          <select value={shelf} onChange={event => handleChange(event, id)}>
+          <select value={shelf || 'none'} onChange={event => handleChange(event, id)}>
             <option value='none' disabled>Move to...</option>
             <option value='currentlyReading'>Currently Reading</option>
             <option value='wantToRead'>Want to Read</option>

@@ -81,7 +81,9 @@ class App extends React.Component {
         <Route
           path='/search'
           render={() => (
-            <SearchBooks />
+            <SearchBooks
+              handleChange={this.handleChange}
+            />
           )}
         />
       </div>
