@@ -4,14 +4,14 @@ import Book from './Book';
 import './BookShelf.css';
 
 const BookShelf = (props) => {
-  const { title, category, books, handleChange } = props;
+  const { title, shelf, books, handleChange } = props;
 
   return (
     <div className='bookshelf'>
       <h2 className='bookshelf-title'>{title}</h2>
       <div className='bookshelf-books'>
         <ol className='books-grid'>
-          {books.filter(book => book.category === category)
+          {books.filter(book => book.shelf === shelf)
             .map(book => (
               <li key={book.id}>
                 <Book {...book} handleChange={handleChange} />

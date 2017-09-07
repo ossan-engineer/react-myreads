@@ -6,9 +6,9 @@ const Book = (props) => {
   const {
     id,
     title,
-    author,
-    imageUrl,
-    category,
+    authors,
+    imageLinks,
+    shelf,
     handleChange,
   } = props;
 
@@ -16,12 +16,12 @@ const Book = (props) => {
     <div className='book'>
       <div className='book-top'>
         <img
-          src={imageUrl}
+          src={imageLinks.thumbnail}
           className='book-cover'
-          alt={`${id}: ${title} - ${author}`}
+          alt={`${id}: ${title} - ${authors.toString()}`}
         />
         <div className='book-shelf-changer'>
-          <select value={category} onChange={(event) => handleChange(event, id)}>
+          <select value={shelf} onChange={(event) => handleChange(event, id)}>
             <option value='none' disabled>Move to...</option>
             <option value='currentlyReading'>Currently Reading</option>
             <option value='wantToRead'>Want to Read</option>
@@ -31,7 +31,7 @@ const Book = (props) => {
         </div>
       </div>
       <div className='book-title'>{title}</div>
-      <div className='book-authors'>{author}</div>
+      <div className='book-authors'>{authors.toString()}</div>
     </div>
   );
 };
