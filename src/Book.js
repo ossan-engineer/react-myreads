@@ -21,7 +21,7 @@ const Book = (props) => {
           alt={`${id}: ${title} - ${authors.join(', ')}`}
         />
         <div className='book-shelf-changer'>
-          <select value={shelf} onChange={(event) => handleChange(event, id)}>
+          <select value={shelf} onChange={event => handleChange(event, id)}>
             <option value='none' disabled>Move to...</option>
             <option value='currentlyReading'>Currently Reading</option>
             <option value='wantToRead'>Want to Read</option>
@@ -39,9 +39,12 @@ const Book = (props) => {
 Book.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  authors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  imageLinks: PropTypes.shape({
+    thumbnail: PropTypes.string.isRequired,
+    smallThumbnail: PropTypes.string.isRequired,
+  }).isRequired,
+  shelf: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };
 

@@ -28,15 +28,18 @@ class App extends React.Component {
 
   handleChange = (event, id) => {
     const newBooks = this.state.books.map(book => Object.assign({}, book));
+    const shelf = event.target.value;
 
     newBooks.forEach((newBook) => {
       if (newBook.id === id) {
-        newBook.shelf = event.target.value;
+        newBook.shelf = shelf;
       }
     });
 
     this.setState({
       books: newBooks,
+    }, () => {
+      BooksAPI.update(id, shelf);
     });
   };
 
