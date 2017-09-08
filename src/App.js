@@ -15,13 +15,13 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  handleGetAll = () => {
     BooksAPI.getAll().then((data) => {
       this.setState({
         books: data,
       });
     });
-  }
+  };
 
   handleChange = (event, id) => {
     const newBooks = this.state.books.map(book => Object.assign({}, book));
@@ -40,6 +40,19 @@ class App extends React.Component {
     });
   };
 
+  handleSearch = (event) => {
+    if (!event || !event.target.value) {
+      this.setState({
+        books: [],
+      });
+      return;
+    }
+
+    BooksAPI.search(event.target.value).then(data => this.setState({
+      books: Array.isArray(data) ? data : [],
+    }));
+  };
+
   render() {
     return (
       <div className='app'>
@@ -50,6 +63,7 @@ class App extends React.Component {
             <Home
               books={this.state.books}
               handleChange={this.handleChange}
+              handleGetAll={this.handleGetAll}
             />
           )}
         />
@@ -57,7 +71,9 @@ class App extends React.Component {
           path='/search'
           render={() => (
             <SearchBooks
+              books={this.state.books}
               handleChange={this.handleChange}
+              handleSearch={this.handleSearch}
             />
           )}
         />

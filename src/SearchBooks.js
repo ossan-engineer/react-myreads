@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 import './SearchBooks.css';
 
 class SearchBooks extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      books: [],
-    };
+  componentDidMount() {
+    this.props.handleSearch();
   }
 
-  handleSearch = (event) => {
-    this.setState({
-      books: [],
-    });
-
-    BooksAPI.search(event.target.value).then(data => this.setState({
-      books: data,
-    }));
-  };
+  componentWillReceiveProps(nextProps) {
+    // TODO: Sync shelves between Home and SearchBooks
+  }
 
   render() {
-    const { handleChange } = this.props;
+    const { books, handleChange, handleSearch } = this.props;
+
+    console.log(books);
 
     return (
       <div className='search-books'>
@@ -46,18 +37,18 @@ class SearchBooks extends Component {
             <input
               type='text'
               placeholder='Search by title or author'
-              onChange={this.handleSearch}
+              onChange={handleSearch}
             />
 
           </div>
         </div>
         <div className='search-books-results'>
           <ol className='books-grid'>
-            {this.state.books.map(book => (
+            {books.length > 0 ? books.map(book => (
               <li key={book.id}>
                 <Book {...book} handleChange={handleChange} />
               </li>
-            ))
+            )) : null
             }
           </ol>
         </div>
@@ -66,8 +57,22 @@ class SearchBooks extends Component {
   }
 }
 
+SearchBooks.defaultProps = {
+  books: [],
+};
+
 SearchBooks.propTypes = {
+  books: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    authors: PropTypes.arrayOf(PropTypes.string),
+    imageLinks: PropTypes.shape({
+      thumbnail: PropTypes.string,
+      smallThumbnail: PropTypes.string,
+    }),
+  })),
   handleChange: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired,
 };
 
 export default SearchBooks;

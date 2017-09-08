@@ -24,18 +24,22 @@ const BookShelf = (props) => {
   );
 };
 
+BookShelf.defaultProps = {
+  books: [],
+}
+
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,
   shelf: PropTypes.string.isRequired,
   books: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    authors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    id: PropTypes.string,
+    title: PropTypes.string,
+    authors: PropTypes.arrayOf(PropTypes.string),
     imageLinks: PropTypes.shape({
-      thumbnail: PropTypes.string.isRequired,
-      smallThumbnail: PropTypes.string.isRequired,
-    }).isRequired,
-  })).isRequired,
+      thumbnail: PropTypes.string,
+      smallThumbnail: PropTypes.string,
+    }),
+  })),
   handleChange: PropTypes.func.isRequired,
 };
 

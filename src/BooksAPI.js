@@ -43,5 +43,5 @@ export const search = (query, maxResults = 50) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ query, maxResults }),
-  }).then(res => res.json())
+  }).then((res = []) => res.json())
     .then(data => data.books);

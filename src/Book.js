@@ -36,15 +36,20 @@ const Book = (props) => {
   );
 };
 
+Book.defaultProps = {
+  // shelf: 'none',
+  authors: [],
+}
+
 Book.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  authors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  authors: PropTypes.arrayOf(PropTypes.string),
   imageLinks: PropTypes.shape({
     thumbnail: PropTypes.string.isRequired,
     smallThumbnail: PropTypes.string.isRequired,
   }).isRequired,
-  shelf: PropTypes.string.isRequired,
+  shelf: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
 };
 
