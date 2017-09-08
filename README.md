@@ -1,4 +1,4 @@
-# React My Read
+# React MyReads
 
 This is a virtual bookcase to store your books and track what you're reading. You can search for books and add them to a bookshelf.
 
