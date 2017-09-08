@@ -47,7 +47,10 @@ class App extends React.Component {
           exact
           path='/'
           render={() => (
-
+            <Home
+              books={this.state.books}
+              handleChange={this.handleChange}
+            />
           )}
         />
         <Route
