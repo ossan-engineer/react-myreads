@@ -12,7 +12,7 @@ const Home = (props) => {
   return (
     <div className='home'>
       <div className='list-books'>
-        <ListBooksTitle title='MyReads' />
+        <ListBooksTitle title='React MyReads' />
         <div className='list-books-content'>
           <div>
             <BookShelf
