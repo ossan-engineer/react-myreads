@@ -26,7 +26,7 @@ const BookShelf = (props) => {
 
 BookShelf.defaultProps = {
   books: [],
-}
+};
 
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,

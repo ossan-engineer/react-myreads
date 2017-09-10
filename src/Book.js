@@ -37,9 +37,9 @@ const Book = (props) => {
 };
 
 Book.defaultProps = {
-  // shelf: 'none',
+  shelf: 'none',
   authors: [],
-}
+};
 
 Book.propTypes = {
   id: PropTypes.string.isRequired,

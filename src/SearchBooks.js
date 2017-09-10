@@ -9,10 +9,6 @@ class SearchBooks extends Component {
     this.props.handleSearch();
   }
 
-  componentWillReceiveProps(nextProps) {
-    // TODO: Sync shelves between Home and SearchBooks
-  }
-
   render() {
     const { books, handleChange, handleSearch } = this.props;
 

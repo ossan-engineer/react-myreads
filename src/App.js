@@ -29,7 +29,7 @@ class App extends React.Component {
 
     newBooks.forEach((newBook) => {
       if (newBook.id === id) {
-        newBook.shelf = shelf;
+        newBook.shelf = shelf; // eslint-disable-line no-param-reassign
       }
     });
 

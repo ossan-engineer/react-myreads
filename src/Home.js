@@ -49,7 +49,7 @@ class Home extends Component {
 
 Home.defaultProps = {
   books: [],
-}
+};
 
 Home.propTypes = {
   books: PropTypes.arrayOf(PropTypes.shape({
