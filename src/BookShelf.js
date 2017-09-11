@@ -4,17 +4,17 @@ import Book from './Book';
 import './BookShelf.css';
 
 const BookShelf = (props) => {
-  const { title, shelf, books, handleChange } = props;
+  const { title, shelf, myBooks, handleChange } = props;
 
   return (
     <div className='bookshelf'>
       <h2 className='bookshelf-title'>{title}</h2>
       <div className='bookshelf-books'>
         <ol className='books-grid'>
-          {books.filter(book => book.shelf === shelf)
-            .map(book => (
-              <li key={book.id}>
-                <Book {...book} handleChange={handleChange} />
+          {myBooks.filter(myBook => myBook.shelf === shelf)
+            .map(myBook => (
+              <li key={myBook.id}>
+                <Book {...myBook} handleChange={handleChange} />
               </li>
             ))
           }
@@ -25,13 +25,13 @@ const BookShelf = (props) => {
 };
 
 BookShelf.defaultProps = {
-  books: [],
+  myBooks: [],
 };
 
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,
   shelf: PropTypes.string.isRequired,
-  books: PropTypes.arrayOf(PropTypes.shape({
+  myBooks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     authors: PropTypes.arrayOf(PropTypes.string),

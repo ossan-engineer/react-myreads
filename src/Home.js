@@ -12,7 +12,7 @@ class Home extends Component {
   }
 
   render() {
-    const { books, handleChange } = this.props;
+    const { myBooks, handleChange } = this.props;
 
     return (
       <div className='home'>
@@ -23,19 +23,19 @@ class Home extends Component {
               <BookShelf
                 title='Currently Reading'
                 shelf={SHELVES.CURRENTLY_READING}
-                books={books}
+                myBooks={myBooks}
                 handleChange={handleChange}
               />
               <BookShelf
                 title='Want to Read'
                 shelf={SHELVES.WANT_TO_READ}
-                books={books}
+                myBooks={myBooks}
                 handleChange={handleChange}
               />
               <BookShelf
                 title='Read'
                 shelf={SHELVES.READ}
-                books={books}
+                myBooks={myBooks}
                 handleChange={handleChange}
               />
             </div>
@@ -48,11 +48,11 @@ class Home extends Component {
 }
 
 Home.defaultProps = {
-  books: [],
+  myBooks: [],
 };
 
 Home.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.shape({
+  myBooks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     authors: PropTypes.arrayOf(PropTypes.string),

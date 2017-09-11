@@ -10,9 +10,9 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { books, handleChange, handleSearch } = this.props;
+    const { searchedBooks, handleChange, handleSearch } = this.props;
 
-    console.log(books);
+    console.log(searchedBooks);
 
     return (
       <div className='search-books'>
@@ -40,9 +40,9 @@ class SearchBooks extends Component {
         </div>
         <div className='search-books-results'>
           <ol className='books-grid'>
-            {books.length > 0 ? books.map(book => (
-              <li key={book.id}>
-                <Book {...book} handleChange={handleChange} />
+            {searchedBooks.length > 0 ? searchedBooks.map(searchedBook => (
+              <li key={searchedBook.id}>
+                <Book {...searchedBook} handleChange={handleChange} />
               </li>
             )) : null
             }
@@ -54,11 +54,11 @@ class SearchBooks extends Component {
 }
 
 SearchBooks.defaultProps = {
-  books: [],
+  searchedBooks: [],
 };
 
 SearchBooks.propTypes = {
-  books: PropTypes.arrayOf(PropTypes.shape({
+  searchedBooks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     authors: PropTypes.arrayOf(PropTypes.string),

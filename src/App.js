@@ -11,20 +11,21 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      books: [],
+      myBooks: [],
+      searchedBooks: [],
     };
   }
 
   handleGetAll = () => {
     BooksAPI.getAll().then((data) => {
       this.setState({
-        books: data,
+        myBooks: data,
       });
     });
   };
 
   handleChange = (event, id) => {
-    const newBooks = this.state.books.map(book => Object.assign({}, book));
+    const newBooks = this.state.myBooks.map(book => Object.assign({}, book));
     const shelf = event.target.value;
 
     newBooks.forEach((newBook) => {
@@ -34,7 +35,7 @@ class App extends React.Component {
     });
 
     this.setState({
-      books: newBooks,
+      myBooks: newBooks,
     }, () => {
       BooksAPI.update(id, shelf);
     });
@@ -43,13 +44,13 @@ class App extends React.Component {
   handleSearch = (event) => {
     if (!event || !event.target.value) {
       this.setState({
-        books: [],
+        searchedBooks: [],
       });
       return;
     }
 
     BooksAPI.search(event.target.value).then(data => this.setState({
-      books: Array.isArray(data) ? data : [],
+      searchedBooks: Array.isArray(data) ? data : [],
     }));
   };
 
@@ -61,7 +62,7 @@ class App extends React.Component {
           path='/'
           render={() => (
             <Home
-              books={this.state.books}
+              myBooks={this.state.myBooks}
               handleChange={this.handleChange}
               handleGetAll={this.handleGetAll}
             />
@@ -71,7 +72,7 @@ class App extends React.Component {
           path='/search'
           render={() => (
             <SearchBooks
-              books={this.state.books}
+              searchedBooks={this.state.searchedBooks}
               handleChange={this.handleChange}
               handleSearch={this.handleSearch}
             />
