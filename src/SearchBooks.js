@@ -10,7 +10,7 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { searchedBooks, handleChange, handleSearch } = this.props;
+    const { searchedBooks, handleChange, handleSearch, query } = this.props;
 
     console.log(searchedBooks);
 
@@ -34,6 +34,7 @@ class SearchBooks extends Component {
               type='text'
               placeholder='Search by title or author'
               onChange={handleSearch}
+              value={query}
             />
 
           </div>
@@ -69,6 +70,7 @@ SearchBooks.propTypes = {
   })),
   handleChange: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
 };
 
 export default SearchBooks;

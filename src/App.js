@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = {
       myBooks: [],
       searchedBooks: [],
+      query: '',
     };
   }
 
@@ -42,16 +43,25 @@ class App extends React.Component {
   };
 
   handleSearch = (event) => {
-    if (!event || !event.target.value) {
+    if (event) {
+      this.setState({
+        query: event.target.value,
+      });
+    }
+
+    if (this.state.query.length > 0) {
+      BooksAPI.search(this.state.query).then((data) => {
+        const newData = Object.assign({}, data); // eslint-disable-line no-unused-vars
+
+        this.setState({
+          searchedBooks: Array.isArray(data) ? data : [],
+        });
+      });
+    } else {
       this.setState({
         searchedBooks: [],
       });
-      return;
     }
-
-    BooksAPI.search(event.target.value).then(data => this.setState({
-      searchedBooks: Array.isArray(data) ? data : [],
-    }));
   };
 
   render() {
@@ -75,6 +85,7 @@ class App extends React.Component {
               searchedBooks={this.state.searchedBooks}
               handleChange={this.handleChange}
               handleSearch={this.handleSearch}
+              query={this.state.query}
             />
           )}
         />
