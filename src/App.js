@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import where from 'lodash.where';
 import * as BooksAPI from './BooksAPI';
 import Home from './Home';
 import SearchBooks from './SearchBooks';
@@ -52,10 +53,18 @@ class App extends React.Component {
 
     if (this.state.query.length > 0) {
       BooksAPI.search(this.state.query).then((data) => {
-        const newData = Object.assign({}, data); // eslint-disable-line no-unused-vars
+        const newSeachedBooks = data.slice(); // eslint-disable-line no-unused-vars
+
+        newSeachedBooks.forEach((searchedBook) => {
+          this.state.myBooks.forEach((myBook) => {
+            if (searchedBook.id === myBook.id) {
+              where(newSeachedBooks, { id: myBook.id })[0].shelf = myBook.shelf;
+            }
+          });
+        });
 
         this.setState({
-          searchedBooks: Array.isArray(data) ? data : [],
+          searchedBooks: Array.isArray(data) ? newSeachedBooks : [],
         });
       });
     } else {
@@ -84,6 +93,7 @@ class App extends React.Component {
             path='/search'
             render={() => (
               <SearchBooks
+                myBooks={this.state.myBooks}
                 searchedBooks={this.state.searchedBooks}
                 handleChange={this.handleChange}
                 handleSearch={this.handleSearch}
