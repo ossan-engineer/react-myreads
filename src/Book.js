@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Book.css';
+import noImage from './assets/no-image.png';
 
 const Book = (props) => {
   const {
@@ -16,7 +17,7 @@ const Book = (props) => {
     <div className='book'>
       <div className='book-top'>
         <img
-          src={imageLinks.thumbnail}
+          src={imageLinks.thumbnail ? imageLinks.thumbnail : noImage}
           className='book-cover'
           alt={`${id}: ${title} - ${authors.join(', ')}`}
         />
@@ -39,6 +40,7 @@ const Book = (props) => {
 Book.defaultProps = {
   shelf: 'none',
   authors: [],
+  imageLinks: {},
 };
 
 Book.propTypes = {
@@ -46,9 +48,9 @@ Book.propTypes = {
   title: PropTypes.string.isRequired,
   authors: PropTypes.arrayOf(PropTypes.string),
   imageLinks: PropTypes.shape({
-    thumbnail: PropTypes.string.isRequired,
-    smallThumbnail: PropTypes.string.isRequired,
-  }).isRequired,
+    thumbnail: PropTypes.string,
+    smallThumbnail: PropTypes.string,
+  }),
   shelf: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
 };
