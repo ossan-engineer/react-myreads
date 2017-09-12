@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Home from './Home';
 import SearchBooks from './SearchBooks';
+import NoMatch from './NoMatch';
 
 import './App.css';
 
@@ -67,28 +68,33 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
-        <Route
-          exact
-          path='/'
-          render={() => (
-            <Home
-              myBooks={this.state.myBooks}
-              handleChange={this.handleChange}
-              handleGetAll={this.handleGetAll}
-            />
-          )}
-        />
-        <Route
-          path='/search'
-          render={() => (
-            <SearchBooks
-              searchedBooks={this.state.searchedBooks}
-              handleChange={this.handleChange}
-              handleSearch={this.handleSearch}
-              query={this.state.query}
-            />
-          )}
-        />
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={() => (
+              <Home
+                myBooks={this.state.myBooks}
+                handleChange={this.handleChange}
+                handleGetAll={this.handleGetAll}
+              />
+            )}
+          />
+          <Route
+            path='/search'
+            render={() => (
+              <SearchBooks
+                searchedBooks={this.state.searchedBooks}
+                handleChange={this.handleChange}
+                handleSearch={this.handleSearch}
+                query={this.state.query}
+              />
+            )}
+          />
+          <Route
+            component={NoMatch}
+          />
+        </Switch>
       </div>
     );
   }

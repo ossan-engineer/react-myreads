@@ -1,0 +1,16 @@
+.no-match {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.no-match_title {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.no-match_link {
+    text-align: center;
+}
