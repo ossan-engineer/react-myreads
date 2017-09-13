@@ -6,9 +6,6 @@ This is a virtual bookcase to store your books and track what you're reading. Yo
 
 http://react-myreads.s3-website-ap-northeast-1.amazonaws.com
 
-In search page, you can use the allowed search terms following.
-https://github.com/ossan-engineer/react-myreads/blob/master/SEARCH_TERMS.md
-
 ## Getting Started
 
 ```
@@ -18,18 +15,15 @@ $ yarn start
 
 ## Reference
 
-### Thanks
+[Udacity](https://www.udacity.com/course/react-nanodegree--nd019)
 
-https://www.udacity.com/course/react-nanodegree--nd019
-
-### Allowed Search Terms
-
-https://github.com/ossan-engineer/react-myreads/blob/master/SEARCH_TERMS.md
+[Allowed Search Terms](https://github.com/ossan-engineer/react-myreads/blob/master/SEARCH_TERMS.md)
 
 ## Contributing
 
 
-Find any typos? Have another resource you think should be included? Contributions are welcome!  
+Find any typos? Have another resource you think should be included? Contributions are welcome!
+  
 First, fork this repository.
 
 ![image](https://user-images.githubusercontent.com/2215105/30404419-93711e8e-9921-11e7-8c81-fd0bf7bd12ac.png)
