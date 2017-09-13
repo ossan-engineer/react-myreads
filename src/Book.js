@@ -12,6 +12,7 @@ const Book = (props) => {
     shelf,
     handleChange,
   } = props;
+  const authorsString = authors.length > 0 ? authors.join(', ') : '';
 
   return (
     <div className='book'>
@@ -19,7 +20,7 @@ const Book = (props) => {
         <img
           src={imageLinks.thumbnail ? imageLinks.thumbnail : noImage}
           className='book-cover'
-          alt={`${id}: ${title} - ${authors.join(', ')}`}
+          alt={`${id}: ${title} - ${authorsString}`}
         />
         <div className='book-shelf-changer'>
           <select value={shelf || 'none'} onChange={event => handleChange(event, id)}>
@@ -32,7 +33,7 @@ const Book = (props) => {
         </div>
       </div>
       <div className='book-title'>{title}</div>
-      <div className='book-authors'>{authors.join(', ')}</div>
+      <div className='book-authors'>{authorsString}</div>
     </div>
   );
 };
