@@ -5,6 +5,7 @@ import * as BooksAPI from './BooksAPI';
 import Home from './Home';
 import SearchBooks from './SearchBooks';
 import NoMatch from './NoMatch';
+import { NONE } from './constants/shelves';
 
 import './App.css';
 
@@ -28,17 +29,17 @@ class App extends React.Component {
   };
 
   handleChange = (event, id) => {
-    const newBooks = this.state.myBooks.map(book => Object.assign({}, book));
+    const newMyBooks = this.state.myBooks.map(book => Object.assign({}, book));
     const shelf = event.target.value;
 
-    newBooks.forEach((newBook) => {
-      if (newBook.id === id) {
-        newBook.shelf = shelf; // eslint-disable-line no-param-reassign
-      }
+    newMyBooks.forEach((newMyBook) => {
+      const newShelf = newMyBook.id === id ? shelf : newMyBook.shelf;
+
+      newMyBook.shelf = newShelf; // eslint-disable-line no-param-reassign
     });
 
     this.setState({
-      myBooks: newBooks,
+      myBooks: newMyBooks,
     }, () => {
       BooksAPI.update(id, shelf);
     });
