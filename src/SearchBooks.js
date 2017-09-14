@@ -11,9 +11,7 @@ class SearchBooks extends Component {
 
   render() {
     const { searchedBooks, handleChange, handleSearch, query } = this.props;
-
-    console.log(searchedBooks);
-
+    
     return (
       <div className='search-books'>
         <div className='search-books-bar'>
