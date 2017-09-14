@@ -1,13 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import where from 'lodash.where';
-import find from 'lodash.find';
 import * as BooksAPI from './BooksAPI';
 import Home from './Home';
 import SearchBooks from './SearchBooks';
 import NoMatch from './NoMatch';
-import { NONE } from './constants/shelves';
-
 import './App.css';
 
 class App extends React.Component {
