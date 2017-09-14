@@ -49,29 +49,20 @@ class App extends React.Component {
   };
 
   handleChangeSearchedBook = (event, id) => {
-    // TODO: searchを表示した時は初期化する
-    const newSearchedBooks = this.state.searchedBooks
-      .map(searchedBook => Object.assign({}, searchedBook))
-      .filter(searchedBook => searchedBook.id !== id);
-    const additionalMyBook = this.state.searchedBooks.length > 0 ?
-      find(this.state.searchedBooks, {
-        id,
-      }) :
-      null;
+    const newSearchedBooks = this.state.searchedBooks.map(searchedBook => Object.assign({}, searchedBook));
     const shelf = event.target.value;
-    newSearchedBooks.push(additionalMyBook);
+
+    newSearchedBooks.forEach((newSearchedBook) => {
+      const newShelf = newSearchedBook.id === id ? shelf : newSearchedBook.shelf;
+
+      newSearchedBook.shelf = newShelf; // eslint-disable-line no-param-reassign
+    });
 
     this.setState({
       searchedBooks: newSearchedBooks,
     }, () => {
       BooksAPI.update(id, shelf);
     });
-
-    console.log('BEFORE');
-    console.log(this.state.searchedBooks);
-    // this.updateSearchedBooks(this.state.searchedBooks);
-    console.log('AFTER');
-    console.log(this.state.searchedBooks);
   };
 
   handleSearch = (event) => {
@@ -93,7 +84,6 @@ class App extends React.Component {
   };
 
   updateSearchedBooks = (searchedBooks) => {
-    console.log('UPDATED');
     const newSeachedBooks = searchedBooks.slice(); // eslint-disable-line no-unused-vars
 
     newSeachedBooks.forEach((searchedBook) => {
