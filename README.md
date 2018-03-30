@@ -4,7 +4,7 @@ This is a virtual bookcase to store your books and track what you're reading. Yo
 
 ## Demo
 
-http://react-myreads.s3-website-ap-northeast-1.amazonaws.com
+https://react-my-reads.firebaseapp.com
 
 ## Getting Started
 
